@@ -1,5 +1,5 @@
 # Lecture_Intro
-Multi-layer Neural Networks
+Multi-layer Neural Networks <br>
 Backpropagation: training multi-layer neural nets, computing gradients by chain rule, method to know about how parameters of input goes to the output you want
 
 ## Supervised Learning
@@ -9,7 +9,7 @@ bunch of inputs + outputs(labels)
 1. 2nd: trainable, adaptive weights
 2. 1st: fixed, random weights = associative layer (small input & output dim): single non-linear NN with random weights: random projections
 
-* Mechanism
+* Mechanism <br>
 input
 -> feature extractor: relevant characteristics of the input (useful for the input), vector of features
 -> trainable classifier
@@ -28,9 +28,9 @@ input
 - Compositionality from natural data forms hierarchy: massive>part>subpart>motifs>contours/edges/textures>pixels
 
 ## Deep Learning
-: control the entire task end-to-end not using hand-crafted engineering
-: cascading/sequence modules with trainable parameters (non-linear ex.ReLU)
--> stack multiple layers
+: control the entire task end-to-end not using hand-crafted engineering <br>
+: cascading/sequence modules with trainable parameters (non-linear ex.ReLU <br>
+-> stack multiple layers <br>
 -> train end-to-end
 
 ## Learning Representations
@@ -38,9 +38,9 @@ useful train data
 
 * Pre-processing
 : disentangle features into linear manifold directions == pre-processing
-: input(n*n)
--> multiple layers (non-linear function //clustering, quantization, sparse coding - pooling)
--> linear: parallel
+: input(n*n) <br>
+-> multiple layers (non-linear function //clustering, quantization, sparse coding - pooling) <br>
+-> linear: parallel <br> <br>
 
 * SVM (super vector machines): 2 layers neural net (1st unsupervised learning – 2nd linear classifier)
 
@@ -53,10 +53,10 @@ useful train data
 * nn.Sequential: container which contains few Modules == sequence of Modules
 * nn.Linear: bias=True: affine transformation // bias=False: matrix multiplication
 ex) nn.Linear(2,2,bias=False): linear transformation, map 0 to 0  fetch the matrix inside the screen and keep it at the center…
- nn.Sequential(
-nn.Linear(2,5), : shoot from 2D to 5D(height=5), bias: 5D == 5 rows(height) with 2 columns, bias with height size(5)
-nn.ReLU(),
-nn.Linear(5,2) : back to 2D to fit it to screen
+ nn.Sequential( <br>
+nn.Linear(2,5), : shoot from 2D to 5D(height=5), bias: 5D == 5 rows(height) with 2 columns, bias with height size(5) <br>
+nn.ReLU(), <br>
+nn.Linear(5,2) : back to 2D to fit it to screen <br>
 )
 * model.to(device): ship model to GPU(or CPU)
 * with torch.no_grad(): remove the variance
