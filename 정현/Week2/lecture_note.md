@@ -84,7 +84,7 @@ interspersed layers of linear operations and point-wise non-linear operations
 
 ## PyTorch implementation of neural network and a generalized backprop algorithm
 
-![Figure 7](./images/Figure 7.png)   
+![Figure 7](./images/Figure7.png)   
 ```
 import torch
 from torch import nn
@@ -134,3 +134,31 @@ out = model(image)
 * 2 Jacobian Matrices
   1. z[k]
   2. w[k]
+
+## A concrete example of backpropagation and intro to basic neural network modules
+
+![02-2-1](./images/02-2-1.png)
+> dC(y,y')/dw = 1*dC(y,y')/dy' * dG(x,w)/dw
+> - dC(y,y')/dw : row vector (1 * N, N == num.of components of w)
+> - 1*dC(y,y')/dy' : row vector (1 * M, M == dimension of the output)
+> - dy'/dw = dG(x,w)/dw : matrix (M * N)
+
+## Basic Neural Net Modules
+1. Linear : Y = W * X
+> dC/dX = W.t * dC/dY
+> dC/dW = dC/dY * X.t
+2. ReLU : Y = (x)+
+> dC/dX = 0 (x<0)  or  dC/dY (otherwise)
+3. Duplicate : Y1 = X, Y2 = X
+  * Y-splitter == both outputs are equal to the input
+  * backprop : gradients get summed
+  * split into n branches similarly
+> dC/dX = dC/dY1 + dC/dY2
+4. Add : Y = X1 + X2
+  * one is perturbed during summing two variables makes the output perturbed by the same quantity
+> dC/dX1 = dC/dY * 1  and  dC/dX2 = dC/dY * 1
+5. Max : Y = max(X1, X2)
+> dY/dX1 = 1 (X1>X2)  or  0 (else)
+> dC/dX1 = dC/dY * 1 (X1>X2)  or  0 (else)
+
+## LogSoftMax vs. SoftMax
