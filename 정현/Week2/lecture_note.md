@@ -48,4 +48,39 @@ L(S,w) = 1/P * sum(L(x,y,w))
 > Actor Critic Methods: consists of a second C module (known & trainable)
 > * one is able to train C module to approximate the cost/reward function (negative cost == differentiable)
 
-##
+## Advantages of SGD and backpropagation for traditional neural nets
+
+### Advantages of SGD
+instead of computing the full gradient of the objective function (average of all samples), SGD takes one sample -> compute the loss (L) -> gradient of the loss -> take one step in the negative gradient direction
+> w <- w - a*dL(x[p],y[p],w)/dw : gradient of the per-sample loss function for a given sample (x[p],y[p])   
+![Figure2](./images/Figure2.png)   
+: stochastically going down not directly
+
+### Traditional Neural Network
+interspersed layers of linear operations and point-wise non-linear operations   
+1. take the input vector multiplied by a matrix formed by the weights
+2. take all the components of the weighted sums vector and pass it through some simple non-linearity (i.e ReLU, tanh, ...)   
+![2 layer NN](./images/Figure3.png)   
+
+> Network Stacking
+> ![Figure4](./images/Figure4.png)
+> * s[i] = sum(w[i,j] * z[j])
+> * z[i] = f(s[i])
+
+### Backpropagation through a non-linear funciton
+![Figure5](./images/Figure5.png)
+> _Stochastic Operation_
+> dC/ds = dC/dz * dz/ds = dC/dz * h'(s)
+> dz = ds * h'(s)
+> dC = dz * dC/dz = ds * h'(s) * dC/dz
+
+### Backpropagation through a weighted sum
+![Figure6](./images/Figure6.png)
+> ds[0] = w[0] * dz
+> ds[1] = w[1] * dz
+> ds[2] = w[2] * dz
+> dC = ds[0] * dC/ds[0] + ds[1] * dC/ds[1] + ds[2] * dC/ds[2]
+> dC/dz = dC/ds[0] * w[0] + dC/ds[1] * w[1] + dC/ds[2] * w[2]
+
+## PyTorch implementation of neural network and a generalized backprop algorithm
+
