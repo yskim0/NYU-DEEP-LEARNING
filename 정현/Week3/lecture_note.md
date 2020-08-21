@@ -104,7 +104,7 @@ do not have to break the input image into segments(== recognizing an image), but
 ## Feature Binding Problem
 How can we recognize / classify the object as THE object? How to bind all of the features that represent / form the object?
 
-**_How to Solve it?_**
+**_How to Solve it?_**   
 2 convolution layers + poolings + 2 FC layers _with enough non-linearity (special features) and data to train CNN_
 
 ## What are CNN good for
