@@ -1,3 +1,5 @@
+# Parameter Transformation
+
 ## Visualization of neural networks
 
 ### Why is it hard with 2 neuron in each hidden layer? Why does it have to be more neurons?
@@ -80,3 +82,33 @@ reads the weight stored in memory forward
 
 Stacking multiple layers -> _hierarchical representation of the data_   
 : **Compositional world representation**
+
+* * *
+
+# CNN
+
+## Overall Architecture Breakdown
+1. Normalization
+2. Filter Banks
+3. Non-linearities
+4. Pooling
+
+> Fully Connected Layer: Convolutional layers whose kernels cover the entire input. (kernel size == input size)
+> - efficiency purpose
+> - no need to specify the size of the input, but the changes in input size changes the output size
+
+## Advantages of CNN
+do not have to break the input image into segments(== recognizing an image), but just have to apply the CNN over the entire image   
+: kernels will cover all locations in the entire image and record the same output regardless of where the pattern is located
+
+## Feature Binding Problem
+How can we recognize / classify the object as THE object? How to bind all of the features that represent / form the object?
+
+**_How to Solve it?_**
+2 convolution layers + poolings + 2 FC layers _with enough non-linearity (special features) and data to train CNN_
+
+## What are CNN good for
+natural signals in the form of multidimensional arrays with...
+1. Locality: local correlations -> detect local features (CNN's intention)
+2. Stationarity: essential and common features -> shared weights and pooling, uniformly distributed
+3. Compositionality: composing an image in a hierarchical manner (multiple layers of neurons)
