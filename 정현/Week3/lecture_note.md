@@ -45,8 +45,32 @@ hand-crafted method using local detectors and summation
 
 ![Figure.9](https://atcold.github.io/pytorch-Deep-Learning/images/week03/03-1/ShiftInvariance.png)   
 template matching: shift-invariant   
+   
+   
+**design "templates" automatically, use NN to learn these "templates" _by Convolution_**   
 
-**design "templates" automatically, use NN to learn these "templates" _by Convolution_**
 
 ## Discrete Convolution
 
+### Convolution
+
+#### yi = sum_j(wj * x(i-j))
+i-th output(yi) == reversed w * window of the same size in x (shifting this window by one entry each time)   
+reads the weight stored in memory backward
+
+### Cross-Correlation
+
+#### yi = sum_j(wj * x(i+j))
+_interchangeable with convolution_   
+reads the weight stored in memory forward
+
+### Higher Dimensional Convolution
+
+#### y(ij) = sum_kl(w(kl) * x(i+k,j+l))
+> w: convolution kernel
+
+### Regular Twists that can be made with the Convolutional Operator in DCNNs
+1. Striding: shifting the window in x with a larger step at a time   
+2. Padding: make the output of convolution to be of the same size as the input by padding the input ends with a number of zero entries (counted in ReLU usage)
+
+## Deep Convolution Neural Networks (DCNNs)
