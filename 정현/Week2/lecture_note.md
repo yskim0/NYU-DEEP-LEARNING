@@ -162,3 +162,24 @@ out = model(image)
 > dC/dX1 = dC/dY * 1 (X1>X2)  or  0 (else)
 
 ## LogSoftMax vs. SoftMax
+1. SoftMax
+  > yi = exp(xi)/sum(exp(xj))
+  > h(s) = 1 / (1 + exp(-s))
+  - when s is large, h(s) is 1
+  - when s is small, h(s) is 0
+    + flat value : the gradient == 0 < gradient vanishing problem >
+    
+2. LogSoftMax
+  > log(yi) = log(exp(xi)/sum(exp(xj)) = xi - log(sum(exp(xj)))
+  > log(exp(s)/(exp(s)+1)) = s - log(1+exp(s))
+  
+## Practical tricks for backpropagation
+1. ReLU as the non-linear activaiton funciton
+2. Cross-Entropy Loss as the objective function for clssification problems
+3. Stochastic Gradient Descent on minibatches during training
+4. Shuffle the order of the training examples when using SGD
+5. Normalize the inputs
+6. Schedule to decrease the learning rate
+7. L1 and L2 Regularization for weight decay
+8. Weight Initializaiton
+9. Dropout
