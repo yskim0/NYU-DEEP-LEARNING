@@ -11,17 +11,17 @@
 
 output goes into the cost function   
 * C(y, y') // true output: y, model output: y'   
-![Supervised Learning](./images/Figure1.jpg)
+![Supervised Learning](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/Figure1.jpg)
 
 ### Computation Graphs
 
 * Variables (tensors, scalar / continuous, discrete)   
 * Deterministic Functions   
-![deterministic_function](./images/deterministic_function.png)
+![deterministic_function](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/deterministic_function.PNG)
   - multiple inputs -> multiple outputs
   - implicit parameter variable (w)
 * Scalar-valued Function   
-![scalar-valued](./images/scalar-valued/png)
+![scalar-valued](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/scalar-valued.PNG)
   - represent cost functions
   - implicit scalar output
   - take multiple inputs to a single output value (i.e distance between inputs)
@@ -32,7 +32,7 @@ output goes into the cost function
 2. Average Loss:   
 S = { (x[p],y[p]) | p = {0,...,P-1} } (P = minibatch)
 L(S,w) = 1/P * sum(L(x,y,w))   
-![Average_Loss](./images/Average_Loss.png)   
+![Average_Loss](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/Average_Loss.png)   
 > Supervised Learning ) loss == output of the cost funciton
 
 ### Gradient Descent: finds the Minima of a function (continuous & differentiable)
@@ -53,29 +53,29 @@ L(S,w) = 1/P * sum(L(x,y,w))
 ### Advantages of SGD
 instead of computing the full gradient of the objective function (average of all samples), SGD takes one sample -> compute the loss (L) -> gradient of the loss -> take one step in the negative gradient direction
 > w <- w - a*dL(x[p],y[p],w)/dw : gradient of the per-sample loss function for a given sample (x[p],y[p])   
-![Figure2](./images/Figure2.png)   
+![Figure2](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/Figure2.png)   
 : stochastically going down not directly
 
 ### Traditional Neural Network
 interspersed layers of linear operations and point-wise non-linear operations   
 1. take the input vector multiplied by a matrix formed by the weights
 2. take all the components of the weighted sums vector and pass it through some simple non-linearity (i.e ReLU, tanh, ...)   
-![2 layer NN](./images/Figure3.png)   
+![2 layer NN](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/Figure3.png)   
 
 > Network Stacking
-> ![Figure4](./images/Figure4.png)
+> ![Figure4](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/Figure4.png)
 > * s[i] = sum(w[i,j] * z[j])
 > * z[i] = f(s[i])
 
 ### Backpropagation through a non-linear funciton
-![Figure5](./images/Figure5.png)
+![Figure5](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/Figure5.png)
 > _Stochastic Operation_
 > dC/ds = dC/dz * dz/ds = dC/dz * h'(s)
 > dz = ds * h'(s)
 > dC = dz * dC/dz = ds * h'(s) * dC/dz
 
 ### Backpropagation through a weighted sum
-![Figure6](./images/Figure6.png)
+![Figure6](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/Figure6.png)
 > ds[0] = w[0] * dz
 > ds[1] = w[1] * dz
 > ds[2] = w[2] * dz
@@ -84,7 +84,7 @@ interspersed layers of linear operations and point-wise non-linear operations
 
 ## PyTorch implementation of neural network and a generalized backprop algorithm
 
-![Figure 7](./images/Figure7.png)   
+![Figure 7](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/Figure%207.png)   
 ```
 import torch
 from torch import nn
@@ -115,7 +115,7 @@ out = model(image)
   
 ### Backprop through a functional module: generalized form of backpropagtaion
 
-![Figure9](./images/Figure9.png)   
+![Figure9](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/Figure9.png)   
 > zg : [dg * 1]
 > df : [df * 1]
 > dc/dzf = dc/dzg * dzg/dzf
@@ -127,7 +127,7 @@ out = model(image)
 
 ### Backprop through a multi-stage graph
 
-![Figure10](./images/Figure10.png)
+![Figure10](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-1/Figure10.png)
 > dc/dzk = dc/dz(k+1) * dz(k+1)/dzk = dc/dz(k+1) * dfk(zk,wk)/dzk
 > dc/dwk = dc/dz(k+1) * dz(k+1)/dwk = dc/dz(k+1) * dfk(zk,wk)/dwk
 
@@ -137,7 +137,7 @@ out = model(image)
 
 ## A concrete example of backpropagation and intro to basic neural network modules
 
-![02-2-1](./images/02-2-1.png)
+![02-2-1](https://atcold.github.io/pytorch-Deep-Learning/images/week02/02-2/02-2-1.png)
 > dC(y,y')/dw = 1*dC(y,y')/dy' * dG(x,w)/dw
 > - dC(y,y')/dw : row vector (1 * N, N == num.of components of w)
 > - 1*dC(y,y')/dy' : row vector (1 * M, M == dimension of the output)
