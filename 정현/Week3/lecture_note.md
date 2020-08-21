@@ -74,3 +74,9 @@ reads the weight stored in memory forward
 2. Padding: make the output of convolution to be of the same size as the input by padding the input ends with a number of zero entries (counted in ReLU usage)
 
 ## Deep Convolution Neural Networks (DCNNs)
+
+> Deep Neural Networks: repeated alternation between (linear operators + point-wise nonlinearity layers)
+> * linear operator == convolution operator
+
+Stacking multiple layers -> _hierarchical representation of the data_   
+: **Compositional world representation**
