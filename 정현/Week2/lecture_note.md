@@ -84,3 +84,53 @@ interspersed layers of linear operations and point-wise non-linear operations
 
 ## PyTorch implementation of neural network and a generalized backprop algorithm
 
+![Figure 7](./images/Figure 7.png)   
+```
+import torch
+from torch import nn
+image = torch.randn(3, 10, 20)
+d0 = image.nelement()
+
+class mynet(nn.Module):
+    def __init__(self, d0, d1, d2, d3):
+        super().__init__()
+        self.m0 = nn.Linear(d0, d1)
+        self.m1 = nn.Linear(d1, d2)
+        self.m2 = nn.Linear(d2, d3)
+
+    def forward(self,x):
+        z0 = x.view(-1)  # flatten input tensor
+        s1 = self.m0(z0)
+        z1 = torch.relu(s1)
+        s2 = self.m1(z1)
+        z2 = torch.relu(s2)
+        s3 = self.m2(z2)
+        return s3
+model = mynet(d0, 60, 40, 10)
+out = model(image)
+```
+* nn.Linear(): Linear Layers
+  - separate objects which contain a parameter vector
+  - adds the bias vector implicitly
+  
+### Backprop through a functional module: generalized form of backpropagtaion
+
+![Figure9](./images/Figure9.png)   
+> zg : [dg * 1]
+> df : [df * 1]
+> dc/dzf = dc/dzg * dzg/dzf
+> [1 * df] = [1 * dg] * [dg * df] : row vector
+
+* Jacobian Matrix: computing the gradient of the cost function w.r.t zf given gradient of the cost function w.r.t zg
+> (dzg/dzf)ij = (dzg)i/(dzf)j
+> - each entry ij : partial derivative of the ith component of the output vector w.r.t to the jth component of the input vector
+
+### Backprop through a multi-stage graph
+
+![Figure10](./images/Figure10.png)
+> dc/dzk = dc/dz(k+1) * dz(k+1)/dzk = dc/dz(k+1) * dfk(zk,wk)/dzk
+> dc/dwk = dc/dz(k+1) * dz(k+1)/dwk = dc/dz(k+1) * dfk(zk,wk)/dwk
+
+* 2 Jacobian Matrices
+  1. z[k]
+  2. w[k]
