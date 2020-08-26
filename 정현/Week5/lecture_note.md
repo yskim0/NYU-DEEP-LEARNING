@@ -71,6 +71,8 @@ SGD requires (extra) averaging a whole bunch of updates and then take a step in 
 BUT, extra averaging process is not needed, _because Momentum adds smoothing to the optimization process, making each update a good approximation to the solution_   
 ![result](https://atcold.github.io/pytorch-Deep-Learning/images/week05/05-1/sgd-vs-momentum.png)   
 
+* * * 
+
 ```
 SGD makes bounces around the floow when the step reaches valley,   
 and decreased learning rate makes these bounces slower.   
