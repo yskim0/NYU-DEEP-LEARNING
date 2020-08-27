@@ -74,7 +74,37 @@ BUT, extra averaging process is not needed, _because Momentum adds smoothing to 
 * * * 
 
 ```
-SGD makes bounces around the floow when the step reaches valley,   
+SGD makes bounces around the floor when the step reaches valley,   
 and decreased learning rate makes these bounces slower.   
 WITH Momentum, by smoothing out the steps, __no bouncing__ occurs.
 ```
+
+## Adaptive Methods
+
+_SGD formulation_: every single weight in network is updated using an equation with the same learning rate(γ)   
+__==> adapt a learning rate for each weight individually by using the information gotten from gradients for each weight__   
+<br>
+![overall](https://image.slidesharecdn.com/random-170910154045/95/-49-638.jpg?cb=1505089848)   
+<br>
+
+### RMSprop (Root Mean Square Propagation)
+_normalizing the gradient by its root-mean-square_   
+![rms](https://blog.paperspace.com/content/images/2018/06/momprop2-2.png)   
+
+### ADAM (Adaptive Moment Estimation) == RMSprop + momentum
+_the momentum update is converted to an exponential moving average and the learning rate doesn't need to be changed when dealing with β_   
+![adam](https://blog.paperspace.com/content/images/2018/06/adam.png)   
+
+### Practical Side
+_similar to SGD without momentum, RMSprop also suffers from noise which bounces at the floor when it's close to a local minimizer_   
+__Thus, ADAM is generally recommended over RMSprop because it combines RMSprop with momentum, which results in improvement similar to SGD with momentum, which is not-noisy and good, stable estimate of the solution__   
+![result](https://atcold.github.io/pytorch-Deep-Learning/images/week05/05-2/5_2_comparison.png)   
+
+_However_, ADAM has several disadvantages, listed below...   
+1. very simple test problems, which the method doesn't converge   
+2. generalization errors, giving non-zero loss to unseen data points   
+3. need to maintain 3 buffers   
+4. 2 momentum parameters with non-one value   
+
+## Normalization Layers
+
