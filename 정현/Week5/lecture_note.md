@@ -114,6 +114,7 @@ improve the network- _the optimization and generalization performance_ -itself b
 __< Computer Vision >__   
 * Batch Norm: applied only over one channel of the entire input images   
 * Group Norm: applied over one image but across a number of channels   
+<br>
 __< Language >__   
 * Layer Norm: applied within one image across all channels   
 * Instance Norm: applied only over one channel and image   
@@ -135,3 +136,11 @@ torch.nn.GroupNorm(num_groups, num_channels, ...)
 
 ## The Death of Optimization
 
+#### 1. MRI Reconstruction
+![step1](https://atcold.github.io/pytorch-Deep-Learning/images/week05/05-2/5_2_mri.png)   
+#### 2. Accelerated MRI: skip some columns randomly
+![step2](https://atcold.github.io/pytorch-Deep-Learning/images/week05/05-2/5_2_acc_mri.png)   
+#### 3. Compressed Sensing: Optimization with Incoherent and Sparse samples
+![step3](https://atcold.github.io/pytorch-Deep-Learning/images/week05/05-2/5_2_comp_sensing.png)   
+#### 4. Who needs Optimization?: Deep Learning Model with Big Neural Network rather than Optimization
+![step4](https://atcold.github.io/pytorch-Deep-Learning/images/week05/05-2/5_2_dl_approach.png)
