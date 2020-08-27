@@ -88,11 +88,11 @@ __==> adapt a learning rate for each weight individually by using the informatio
 <br>
 
 ### RMSprop (Root Mean Square Propagation)
-_normalizing the gradient by its root-mean-square_   
+normalizing the gradient by its root-mean-square   
 ![rms](https://blog.paperspace.com/content/images/2018/06/momprop2-2.png)   
 
 ### ADAM (Adaptive Moment Estimation) == RMSprop + momentum
-_the momentum update is converted to an exponential moving average and the learning rate doesn't need to be changed when dealing with β_   
+the momentum update is converted to an exponential moving average and the learning rate doesn't need to be changed when dealing with β   
 ![adam](https://blog.paperspace.com/content/images/2018/06/adam.png)   
 
 ### Practical Side
@@ -107,4 +107,31 @@ _However_, ADAM has several disadvantages, listed below...
 4. 2 momentum parameters with non-one value   
 
 ## Normalization Layers
+improve the network- _the optimization and generalization performance_ -itself by additional layers in between existing layers, usually between linear layers and activation functions but also after the activation functions, without changing the power of the network
+
+### Normalization Operations
+![norm](https://atcold.github.io/pytorch-Deep-Learning/images/week05/05-2/5_2_norm_operations.png)   
+__< Computer Vision >__   
+* Batch Norm: applied only over one channel of the entire input images   
+* Group Norm: applied over one image but across a number of channels   
+__< Language >__   
+* Layer Norm: applied within one image across all channels   
+* Instance Norm: applied only over one channel and image   
+
+### Why does Normalization help?
+1. networks become easier to optimize, allowing for the use of larger learning rates and speeding up the training of NN   
+2. regularization effect makes extra noise resulting in better geneeralization   
+3. reduces sensitivity to weight initialization   
+
+### Practical Considerations
+
+```
+torch.nn.BatchNorm2d(num_features, ...)
+torch.nn.GroupNorm(num_groups, num_channels, ...)
+```
+
+> BatchNorm / InstanceNorm: multiple training samples => mean/std used are fixed after training   
+> GroupNorm / LayerNorm: one training sample => no fixation is needed   
+
+## The Death of Optimization
 
