@@ -38,6 +38,8 @@ create a negative dataset of non-face patches which the model has _errorneously_
 ## Semantic Segmentation
 assigning a category to every pixel in an input image
 
+* * *
+
 ### CNN for Long Range Adaptive Robot Vision
 
 labeling regions from input images to distinguish between roads and obstacles   
@@ -57,9 +59,9 @@ positions of every pixel in 3D space are estimated by measuring the relative dis
 outputs a label for every pixel in the image up to the horizon, which work as the classifiers
 
 ```
-continuous access to the stereo labels allows retraining __only the last layer of the network__   
-== adapting to the new environment   
-~previous layers are trained and fixed~
+continuous access to the stereo labels allows retraining == adapting to the new environment   
+> retraining only the last layer of the network   
+> previous layers are trained and fixed
 ```
 
 * detect objects up 50-100m   
@@ -74,4 +76,5 @@ __Multiscale approach enables a vider vision by providing extra rescaled images 
   1. reduce the same input image by the factor of 2 and 4 separately
   2. feed them to the same ConvNet (same weights, kernels) => outputs another two sets of Level1&2 features
   3. upsample these features to make Level 2 features the same size as the original image
-  4. stack three sets of upsampled features together and feed them to a classifier
+  4. stack three sets of upsampled features together and feed them to a classifier   
+<br>
