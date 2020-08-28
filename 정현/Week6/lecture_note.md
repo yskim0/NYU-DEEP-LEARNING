@@ -57,12 +57,19 @@ positions of every pixel in 3D space are estimated by measuring the relative dis
 outputs a label for every pixel in the image up to the horizon, which work as the classifiers
 
 ```
-continuous access to the stereo labels allows retraining `only the last layer of the network` == adapting to the new environment   
+continuous access to the stereo labels allows retraining 
+
+`only the last layer of the network`
+
+== adapting to the new environment   
+
 ~previous layers are trained and fixed~
 ```
 
 * detect objects up 50-100m   
-* process around 1 frame per second, solved by ** Low-Cost Visual Odometry Model **   
+* process around 1 frame per second, solved by 
+
+** Low-Cost Visual Odometry Model **   
 
 #### Scene Parsing and Labelling
 ![archi](https://atcold.github.io/pytorch-Deep-Learning/images/week06/06-1/VpVbkl5.jpg)   
@@ -70,6 +77,7 @@ outputs an object category for every pixel with multi-scale architecture
 <br>
 
 ** Multiscale approach enables a vider vision by providing extra rescaled images as inputs **   
+
   1. reduce the same input image by the factor of 2 and 4 separately
   2. feed them to the same ConvNet (same weights, kernels) => outputs another two sets of Level1&2 features
   3. upsample these features to make Level 2 features the same size as the original image
