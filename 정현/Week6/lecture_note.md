@@ -56,13 +56,11 @@ positions of every pixel in 3D space are estimated by measuring the relative dis
   - Served as Model Inputs: pre-processing for building a scale-invariant pyramid of distance-normalized images == multiple scales   
 
 #### Model Outputs
-outputs a label for every pixel in the image up to the horizon, which work as the classifiers
+outputs a label for every pixel in the image up to the horizon, which work as the classifiers   
 
-```
-continuous access to the stereo labels allows retraining == adapting to the new environment   
-> retraining only the last layer of the network   
-> previous layers are trained and fixed
-```
+> continuous access to the stereo labels allows retraining == adapting to the new environment   
+> * `retraining only the last layer of the network`   
+> * previous layers are trained and fixed   
 
 * detect objects up 50-100m   
 * process around 1 frame per second, solved by __Low-Cost Visual Odometry Model__   
