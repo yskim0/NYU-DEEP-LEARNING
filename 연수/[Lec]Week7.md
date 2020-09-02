@@ -231,5 +231,5 @@ y를 찾는 방법 중 하나는 아래 그림에서 녹색 화살표로 표시�
 - 훈련 지점에 임의의 kick을 주고 경사 하강법을 이용해 에너지 함수를 낮춤. 궤도의 끝에서 찾기하는 지점의 에너지 값을 증가시킴.
     - 아래 그림의 녹색선
 
-![7](https://atcold.github.io/pytorch-Deep-Learning/images/week07/07-2/10_contrastive_div.png
+![7](https://atcold.github.io/pytorch-Deep-Learning/images/week07/07-2/10_contrastive_div.png)
 
