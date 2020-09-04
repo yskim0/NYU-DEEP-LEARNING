@@ -200,4 +200,65 @@ FISTA는 고차원 대규모 데이터셋(이미지)에 적용하기에는 비�
 - 퍼지볼의 사이즈는 조정이 가능하다.
     - 서로 붙어버리지 않도록 분산을 1에 가깝게 만드는 패널티 함수(KL Divergence)에 의해 제한된다.
 
-    
+
+----
+
+
+## VAE vs. AE
+
+![12](https://atcold.github.io/pytorch-Deep-Learning/images/week08/08-3/fig_1.png)
+
+- 고전적 AE에서는 h를 generating
+- VAE : 잠재변수 z를 가지고 가우시안 분포를 가지는 E(z), V(z) 만든다.
+    - smaple `z` from the above distribution parametrized by the encoder. Specifically, E(z)and V(z) are passed into a sampler to generate the latent var. `z`
+    - `z` is passed into the decoder to generate x
+
+
+## VAE loss function
+
+![13](https://atcold.github.io/pytorch-Deep-Learning/images/week08/08-3/fig_2.png)
+
+- reconstruction항과 regularization 항으로 이루어짐.
+
+
+## reparameterization trick
+
+`z`를 얻기위해 가우시안 분포에서 샘플을 추출하는데, 이는 경사하강법을 수행할 때 샘플링 모듈을 통해 어떻게 역전파를 수행해야하는지 모르게 되는 문제점이 생긴다.
+
+따라서 `sampling z`를 위해 **reparameterization trick**을 사용한다.
+- 위 그림에서 z에 대한 식 참조
+- 이 경우 훈련에서의 역전파가 가능해진다. (요소 별 곱셈과 덧셈을 거침)
+
+## VAE loss function 분리
+
+VAE 손실 함수는 재구성 항과 정규화 항을 갖는다.
+
+![스크린샷 2020-09-04 오후 1 41 10](https://user-images.githubusercontent.com/48315997/92200238-4c4f2280-eeb4-11ea-85bd-5c7028ef6d34.png)
+
+추정된 각각의 z값을 2d 공간의 원으로 생각해볼 수 있는데 여기서 E(z)는 원의 중심이고 주변 영역은 V(z)에 의해 결정되는 z의 가능한 값이다.
+
+![14](https://atcold.github.io/pytorch-Deep-Learning/images/week08/08-3/fig_3.png)
+
+- 각각의 원은 추정된 z의 영역을 나타내며, 화살표는 어떻게 재구성 항이 각각의 추정된 값들을 다른 값으로 밀어내는지를 보여준다.
+- 만일 z의 추정된 값들 중 어느 두 개 사이에 겹치는 부분이 있다면(두 원이 겹치는 경우) 재구성 할 때의 **모호성**을 만들어낸다.
+- 따라서 재구성 손실은 점들을 서로 밀어낸다.
+- 하지만 계속해서 밀어낸다면 시스템이 폭발할 수 있기 때문에 벌칙항이 필요하다.
+
+![스크린샷 2020-09-04 오후 1 44 24](https://user-images.githubusercontent.com/48315997/92200415-bf589900-eeb4-11ea-85f6-38b25ac5a3b8.png)
+
+
+## penalty 항
+
+VAE 손실함수에서 아래 항을 전개하면 다음을 얻는다.
+
+![스크린샷 2020-09-04 오후 1 47 58](https://user-images.githubusercontent.com/48315997/92200591-3f7efe80-eeb5-11ea-8daa-678ce6884ee0.png)
+
+
+위 식에서 `v_i = V(z_i) - log(V(z_i)) -1`를 따로 빼내고 그래프를 그려보면 아래와 같이 나온다.
+
+![15](https://atcold.github.io/pytorch-Deep-Learning/images/week08/08-3/fig_4.png)
+
+- z_i의 분산이 1일 때 표현식이 최소화 된다.
+- 그러므로 penalty loss는 잠재변수들의 분산을 약 1로 유지시킨다. 이는 시각적으로 원들이 약 1의 반지름을 가질 것임을 의미한다.
+- 마지막 항 E(z_i)^2는 z_i 사이의 거리를 최소화하여 재구성 항이 초래할 수 있는 폭발을 방지한다.
+
