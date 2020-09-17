@@ -34,13 +34,13 @@ with latent variables,
 > β -> inf, y' = argmin_y{F(x,y)}   
 
 ### Examples
-1. Video Prediction
+1. Video Prediction   
   - video compression
   - self-driving car
 
 2. Translation
 : multiple correct translation   
-  1) produce all the possible translations   
-  2) parametrise to respond to a given text (choose the best one) by varying some latent variables   
+  - 1) produce all the possible translations   
+  - 2) parametrise to respond to a given text (choose the best one) by varying some latent variables   
   
 ## Energy-Based Models v.s. Probabilstic Models
